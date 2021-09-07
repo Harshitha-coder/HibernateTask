@@ -12,8 +12,24 @@ public class MobileTester {
 
 		MobileDAO dao = new MobileDAOImpl();
 		dao.save(entity);
-		dao.read();
-		
+		dao.readAll();
+
+		double value = dao.readPriceByBrand();
+		System.out.println("mobile price is:" + value);
+
+		double maxPrice = dao.findMaxPrice();
+		System.out.println("max price is:" + maxPrice);
+
+		double minPrice = dao.findMinPrice();
+		System.out.println("min price is:" + minPrice);
+
+		double totalPrice = dao.findTotalPrice();
+		System.out.println("total price is:" + totalPrice);
+
+		dao.updateBrandByPrice();
+
+		dao.deleteById();
+
 	}
 
 }

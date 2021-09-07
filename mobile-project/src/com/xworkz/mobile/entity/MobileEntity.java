@@ -10,22 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mobile_table")
+@Table(name = "mobile_table")
 public class MobileEntity implements Serializable {
 
-	@Column(name="M_ID")
+	@Column(name = "M_ID")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="M_BRAND")
+	@Column(name = "M_BRAND")
 	private String brand;
-	@Column(name="M_PRICE")
+	@Column(name = "M_PRICE")
 	private double price;
-	@Column(name="M_ISANDROID")
+	@Column(name = "M_ISANDROID")
 	private boolean isAndroid;
-	
+
 	public MobileEntity() {
-		
+
 	}
 
 	public MobileEntity(String brand, double price, boolean isAndroid) {

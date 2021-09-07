@@ -6,5 +6,17 @@ public interface MobileDAO {
 
 	int save(MobileEntity entity);
 
-	void read();
+	void readAll();
+
+	double readPriceByBrand();
+
+	double findMaxPrice();
+
+	double findMinPrice();
+
+	double findTotalPrice();
+
+	void updateBrandByPrice();
+
+	void deleteById();
 }
