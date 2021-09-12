@@ -8,7 +8,7 @@ public interface MobileDAO {
 
 	void readAll();
 
-	double readPriceByBrand();
+	double readPriceByBrand(String brand);
 
 	double findMaxPrice();
 
@@ -16,7 +16,7 @@ public interface MobileDAO {
 
 	double findTotalPrice();
 
-	void updateBrandByPrice();
+	void updateBrandByPrice(String brand, double price);
 
-	void deleteById();
+	void deleteById(int id);
 }

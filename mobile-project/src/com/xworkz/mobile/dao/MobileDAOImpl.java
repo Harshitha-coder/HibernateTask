@@ -33,11 +33,12 @@ public class MobileDAOImpl implements MobileDAO {
 	}
 
 	@Override
-	public double readPriceByBrand() {
+	public double readPriceByBrand(String brand) {
 		double price = 0;
 		try (Session session = factory.openSession()) {
 			Query query = session
-					.createQuery("select mobile.price from MobileEntity as mobile where mobile.brand ='Vivo'");
+					.createQuery("select mobile.price from MobileEntity as mobile where mobile.brand =:Brand");
+			query.setParameter("Brand", brand);
 			Object object = query.uniqueResult();
 			if (object != null) {
 				price = (double) object;
@@ -86,12 +87,14 @@ public class MobileDAOImpl implements MobileDAO {
 	}
 
 	@Override
-	public void updateBrandByPrice() {
+	public void updateBrandByPrice(String brand,double price) {
 
 		try (Session session = factory.openSession()) {
 			Transaction trans = session.beginTransaction();
 			Query query = session
-					.createQuery("update MobileEntity as mobile set mobile.brand='Redmi' where mobile.price='13000'");
+					.createQuery("update MobileEntity as mobile set mobile.brand=:Brand where mobile.price=:Price");
+			query.setParameter("Brand", brand);
+			query.setParameter("Price", price);
 			int value = query.executeUpdate();
 			System.out.println(value);
 			trans.commit();
@@ -100,10 +103,11 @@ public class MobileDAOImpl implements MobileDAO {
 	}
 
 	@Override
-	public void deleteById() {
+	public void deleteById(int id) {
 		try (Session session = factory.openSession()) {
 			Transaction trans = session.beginTransaction();
-			Query query = session.createQuery("delete from MobileEntity mobile where mobile.id='1'");
+			Query query = session.createQuery("delete from MobileEntity mobile where mobile.id=:Id");
+			query.setParameter("Id",id);
 			int value = query.executeUpdate();
 			System.out.println(value);
 			trans.commit();

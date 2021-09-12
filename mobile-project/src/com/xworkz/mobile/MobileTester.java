@@ -1,35 +1,38 @@
 package com.xworkz.mobile;
 
-import com.xworkz.mobile.dao.MobileDAO;
-import com.xworkz.mobile.dao.MobileDAOImpl;
 import com.xworkz.mobile.entity.MobileEntity;
+import com.xworkz.mobile.service.MobileService;
+import com.xworkz.mobile.service.MobilesServiceImpl;
 
 public class MobileTester {
 
 	public static void main(String[] args) {
 
-		MobileEntity entity = new MobileEntity("Vivo", 13000, true);
+		MobileEntity entity = new MobileEntity("Oppo", 9000, true);
 
-		MobileDAO dao = new MobileDAOImpl();
-		dao.save(entity);
-		dao.readAll();
+		MobileService service = new MobilesServiceImpl();
+		// service.validateAndSave(entity);
+		service.validateAndReadAll();
+		System.out.println("****************");
+		double price = service.validateAndreadPriceByBrand("Oppo");
+		System.out.println("mobile price is:" + price);
 
-		double value = dao.readPriceByBrand();
-		System.out.println("mobile price is:" + value);
+		System.out.println("****************");
+		double maxPrice = service.validateAndfindMaxPrice();
+		System.out.println("mobile maxPrice is:" + maxPrice);
 
-		double maxPrice = dao.findMaxPrice();
-		System.out.println("max price is:" + maxPrice);
+		System.out.println("****************");
+		double minPrice = service.validateAndfindMinPrice();
+		System.out.println("mobile minPrice is:" + minPrice);
 
-		double minPrice = dao.findMinPrice();
-		System.out.println("min price is:" + minPrice);
+		System.out.println("****************");
+		double totalPrice = service.validateAndfindTotalPrice();
+		System.out.println("mobile totalPrice is:" + totalPrice);
 
-		double totalPrice = dao.findTotalPrice();
-		System.out.println("total price is:" + totalPrice);
+		System.out.println("****************");
+		service.validateAndUpdateBrandByPrice("Samsung", 9000);
 
-		dao.updateBrandByPrice();
-
-		dao.deleteById();
-
+		System.out.println("****************");
+		service.validateAndDeleteById(6);
 	}
-
 }
